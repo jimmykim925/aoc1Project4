@@ -28,9 +28,9 @@
   [self.view addSubview:username];
 
   usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(120.0f, 10.0f, 180.0f, 25.0f)];
-  
   if (usernameTextField != nil){
     usernameTextField.borderStyle = UITextBorderStyleRoundedRect;
+    
     [self.view addSubview:usernameTextField];
   }
   
@@ -40,6 +40,9 @@
     login.tintColor = [UIColor lightGrayColor];
     [login setTitle:@"Login" forState:UIControlStateNormal];
     [login setTitle:@"Login" forState:UIControlStateHighlighted];
+    
+    [login addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:login];
   }
 
@@ -55,14 +58,19 @@
   [self.view addSubview:enterName];
 
 
-
-
-
-
-
-
-    [super viewDidLoad];
+  
+  [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)onClick:(UIButton*)login
+{
+  //UITextField *test = [usernameTextField ];
+  text = usernameTextField.text;
+  enterName.text = @"User: username has been logged in";
+  NSLog(text);
+  
+  
 }
 
 - (void)viewDidUnload
