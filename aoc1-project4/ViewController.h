@@ -16,5 +16,10 @@
   UIButton *login;
   UILabel *enterName;
   NSMutableString *userLabelText;
+  NSDate *theDate;
+  NSDateFormatter *dateFormat;
+  UIButton *showDate;
+  UIAlertView *date;
+  NSString *test;
 }
 @end

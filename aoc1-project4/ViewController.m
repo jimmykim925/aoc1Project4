@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad
 {
-
+  //UILabel for username
   username = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 100.0f, 20.0f)];
   
   if (username != nil) {
@@ -26,7 +26,8 @@
   }
 
   [self.view addSubview:username];
-
+  
+  // Text field for username
   usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(120.0f, 10.0f, 180.0f, 25.0f)];
   if (usernameTextField != nil){
     usernameTextField.borderStyle = UITextBorderStyleRoundedRect;
@@ -34,18 +35,22 @@
     [self.view addSubview:usernameTextField];
   }
   
+  // Login button
   login = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  
+  login.tag = 0;
+  
   if (login != nil){
     login.frame = CGRectMake(210.0f, 40.0f, 90.0f, 30.0f);
     login.tintColor = [UIColor lightGrayColor];
     [login setTitle:@"Login" forState:UIControlStateNormal];
-    [login setTitle:@"Login" forState:UIControlStateHighlighted];
     
     [login addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:login];
   }
 
+  // UILabel for username prompt
   enterName = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 80.0f, 320.0f, 50.0f)];
   
   if (enterName != nil) {
@@ -56,6 +61,34 @@
   }
   
   [self.view addSubview:enterName];
+  
+  // Sets NSDate
+  theDate = [NSDate date];
+    
+  // Allocate and initialize NSFormatter
+  dateFormat = [[NSDateFormatter alloc] init];
+  
+  if (dateFormat != nil){
+   [dateFormat setDateStyle:NSDateFormatterFullStyle];
+   [dateFormat setTimeStyle:NSDateFormatterFullStyle];
+    test = [dateFormat stringFromDate:theDate];
+  }
+  
+  
+  // Show Date button
+  showDate = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  
+  showDate.tag = 1;
+  
+  if (showDate != nil){
+    showDate.frame = CGRectMake(10.0f, 140.0f, 90.0f, 30.0f);
+    showDate.tintColor = [UIColor lightGrayColor];
+    [showDate setTitle:@"Show Date" forState:UIControlStateNormal];
+    
+    [showDate addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:showDate];
+  }
 
 
   
@@ -65,17 +98,29 @@
 
 - (void)onClick:(UIButton*)login
 {
-  text = usernameTextField.text;
+  if (login.tag == 0) {
   
-  if (text.length != 0) {
-  
-    userLabelText = [[NSMutableString alloc] initWithString:@"User:  has been logged in"];
-    [userLabelText insertString:text atIndex:6];
+    text = usernameTextField.text;
     
-    enterName.text = userLabelText;
-  } else {
-    enterName.text = @"Username cannot be empty";
+    if (text.length != 0) {
+    
+      userLabelText = [[NSMutableString alloc] initWithString:@"User:  has been logged in"];
+      [userLabelText insertString:text atIndex:6];
+      
+      enterName.text = userLabelText;
+    } else {
+      enterName.text = @"Username cannot be empty";
+    }
+    } else if (showDate.tag == 1){
+    
+    date =[[UIAlertView alloc] initWithTitle:@"Date" message:(NSString *)test delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+    
+    if (date != nil){
+      [date show];
+    }
   }
+  
+  
 }
 
 - (void)viewDidUnload
