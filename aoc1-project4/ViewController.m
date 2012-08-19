@@ -65,12 +65,17 @@
 
 - (void)onClick:(UIButton*)login
 {
-  //UITextField *test = [usernameTextField ];
   text = usernameTextField.text;
-  enterName.text = @"User: username has been logged in";
-  NSLog(text);
   
+  if (text.length != 0) {
   
+    userLabelText = [[NSMutableString alloc] initWithString:@"User:  has been logged in"];
+    [userLabelText insertString:text atIndex:6];
+    
+    enterName.text = userLabelText;
+  } else {
+    enterName.text = @"Username cannot be empty";
+  }
 }
 
 - (void)viewDidUnload

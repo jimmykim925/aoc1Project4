@@ -15,5 +15,6 @@
   NSString *text;
   UIButton *login;
   UILabel *enterName;
+  NSMutableString *userLabelText;
 }
 @end
