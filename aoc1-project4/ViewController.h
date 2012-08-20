@@ -10,6 +10,7 @@
 
 @interface ViewController : UIViewController
 {
+  // Sets pointers to UILabels, NSString, UILabel, etc.
   UILabel *username;
   UITextField *usernameTextField;
   NSString *text;
@@ -20,6 +21,8 @@
   NSDateFormatter *dateFormat;
   UIButton *showDate;
   UIAlertView *date;
-  NSString *test;
+  NSString *alertMessage;
+  UIButton *info;
+  UILabel *infoLabel;
 }
 @end
